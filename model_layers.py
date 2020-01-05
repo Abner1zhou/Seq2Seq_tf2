@@ -9,7 +9,7 @@ import tensorflow as tf
 from utils.wv_loader import load_embedding_matrix, load_vocab
 
 
-class Encoder(tf.keras.layers.Layer):
+class Encoder(tf.keras.Model):
     def __init__(self, vocab_sz, emb_dim, emb_matrix, enc_units, batch_sz):
         super(Encoder, self).__init__()
         self.batch_sz = batch_sz
@@ -55,7 +55,7 @@ class BahAttention(tf.keras.layers.Layer):
         return context_vector, aw
 
 
-class Decoder(tf.keras.layers.Layer):
+class Decoder(tf.keras.Model):
     def __init__(self, vocab_sz, emb_dim, emb_matrix, dec_units, batch_sz):
         super(Decoder, self).__init__()
         self.batch_sz = batch_sz
@@ -66,7 +66,7 @@ class Decoder(tf.keras.layers.Layer):
         self.gru = tf.keras.layers.GRU(self.units, return_sequences=True,
                                        return_state=True,
                                        recurrent_initializer='glorot_uniform')
-        self.fc = tf.keras.layers.Dense(vocab_size)
+        self.fc = tf.keras.layers.Dense(vocab_sz)
 
     def call(self, x, context_vector):
         # x shape:(batch_size, 1, embedding_dim)
