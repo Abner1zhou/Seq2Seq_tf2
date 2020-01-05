@@ -1,4 +1,9 @@
-# -*- coding:utf-8 -*-
+# -*- coding: UTF-8 –*-
+"""
+@author: 周世聪
+@contact: abner1zhou@gmail.com
+@desc: 设置文件路径
+"""
 import os
 import pathlib
 
@@ -36,9 +41,3 @@ vocab_path = os.path.join(root, 'data', 'wv', 'vocab.txt')
 reverse_vocab_path = os.path.join(root, 'data', 'wv', 'reverse_vocab.txt')
 # embedding matrix
 embedding_matrix_path = os.path.join(root, 'data', 'wv', 'embedding_matrix.csv')
-
-# 设置常量
-# 训练轮数
-WV_TRAIN_EPOCHS = 10
-EPOCH = 10
-
