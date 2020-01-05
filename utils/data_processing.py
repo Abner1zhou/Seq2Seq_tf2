@@ -47,13 +47,16 @@ def get_stop_words(stop_words_path):
 
 
 # cut函数，分别对question，dialogue，report进行切词
-def cut_words(sentences):
+def cut_words(sentences, use_stop_words=False):
     # 清除无用词
     sentence = clean_sentence(sentences)
     # 切词，默认精确模式，全模式cut参数cut_all=True
     words = jieba.cut(sentence)
-    # 过滤停用词
-    stop_words = get_stop_words(config.stop_word_path)
+    # 过滤停用
+    if use_stop_words:
+        stop_words = get_stop_words(config.stop_word_path)
+    else:
+        stop_words = []
     words = [w for w in words if w not in stop_words]
     return ' '.join(words)
 
@@ -154,6 +157,8 @@ def build_dataset(train_df_path, test_df_path):
     # 1. 切词
     train_seg_df = get_segment(train_df_path)
     test_seg_df = get_segment(test_df_path)
+    train_seg_df.to_csv(config.train_seg_path, index=False)
+    test_seg_df.to_csv(config.test_seg_path, index=False)
     # 2. 合并数据集
     merged_df = pd.concat([train_seg_df[['merged']], test_seg_df[['merged']]], axis=0)
     merged_df.to_csv(config.merger_seg_path, header=False, index=False)
