@@ -16,7 +16,7 @@ import numpy as np
 
 from utils import multi_cpus
 from utils import config, file_utils
-from utils.config import WV_TRAIN_EPOCHS
+from utils.params_utils import WV_TRAIN_EPOCHS
 
 
 def clean_sentence(sentence):
@@ -222,17 +222,24 @@ def build_dataset(train_df_path, test_df_path):
     return train_x, train_y, test_x
 
 
-def load_dataset():
+def load_train_data():
     """
-    :return: 加载处理好的数据集
+    :return: 加载训练数据集
     """
     train_x = np.loadtxt(config.train_x_path)
     train_y = np.loadtxt(config.train_y_path)
-    test_x = np.loadtxt(config.test_x_path)
     train_x.dtype = 'float64'
     train_y.dtype = 'float64'
+    return train_x, train_y
+
+
+def load_test_data():
+    """
+    :return: 加载测试数据集
+    """
+    test_x = np.loadtxt(config.test_x_path)
     test_x.dtype = 'float64'
-    return train_x, train_y, test_x
+    return test_x
 
 
 def main():
