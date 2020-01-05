@@ -9,10 +9,10 @@
 from gensim.models.word2vec import LineSentence, Word2Vec
 import numpy as np
 
-from utils.config import embedding_matrix_path
+from utils.config import embedding_matrix_path, vocab_path
 
 
-def load_vocab(file_path):
+def load_vocab():
     """
     读取字典
     :param file_path: 文件路径
@@ -20,7 +20,7 @@ def load_vocab(file_path):
     """
     vocab = {}
     reverse_vocab = {}
-    for line in open(file_path, "r", encoding='utf-8').readlines():
+    for line in open(vocab_path, "r", encoding='utf-8').readlines():
         word, index = line.strip().split("\t")
         index = int(index)
         vocab[word] = index
