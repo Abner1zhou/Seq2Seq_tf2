@@ -41,3 +41,5 @@ vocab_path = os.path.join(root, 'data', 'wv', 'vocab.txt')
 reverse_vocab_path = os.path.join(root, 'data', 'wv', 'reverse_vocab.txt')
 # embedding matrix
 embedding_matrix_path = os.path.join(root, 'data', 'wv', 'embedding_matrix.csv')
+# model checkpoint path
+checkpoint_dir = os.path.join(root, 'data', 'checkpoints', 'training_checkpoints_seq2seq')

@@ -42,6 +42,7 @@ class Seq2Seq(tf.keras.Model):
         context_vector, _ = self.attention(dec_hidden, enc_output)
 
         for t in range(1, dec_target.shape[1]):
+            #print(dec_input.shape)
             pred, dec_hidden = self.decoder(dec_input,
                                             context_vector)
             context_vector, attn = self.attention(dec_hidden, enc_output)
