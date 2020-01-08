@@ -56,6 +56,10 @@ class Seq2Seq(tf.keras.Model):
 
 
 def main():
+    """
+    测试seq2seq前向传播
+    :return:
+    """
     vocab, re_vocab = load_vocab()
     vocab_size = len(vocab)
     batch_size = 128
